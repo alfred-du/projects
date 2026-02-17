@@ -1,26 +1,188 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0B0F14;
+  --foreground: #e8eaed;
+  --muted: #9ca3af;
+  /* Liquid glass tuning */
+  --glass-tint: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-strong: rgba(255, 255, 255, 0.18);
+  --glass-highlight: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
+
+/* Liquid / frosted glass utility */
+.glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--glass-tint);
+  backdrop-filter: blur(16px) saturate(140%) contrast(110%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%) contrast(110%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.glass::before {
+  /* liquid glare + edge bloom */
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -2px;
+  background:
+    radial-gradient(1200px 400px at 20% 0%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 55%),
+    radial-gradient(800px 300px at 90% 20%, rgba(120, 180, 255, 0.12), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0));
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+.glass::after {
+  /* subtle noise texture (very light) */
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      rgba(255, 255, 255, 0) 2px,
+      rgba(255, 255, 255, 0) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.035) 0px,
+      rgba(0, 0, 0, 0.035) 1px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0) 4px
+    );
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--glass-border-strong);
+  box-shadow:
+    0 14px 50px rgba(0, 0, 0, 0.40),
+    inset 0 1px 0 var(--glass-highlight);
+}
+
+/* Section scroll transition */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Page transition animations (content only) */
+.page-transition {
+  opacity: 1;
+  transition:
+    opacity 220ms ease;
+  will-change: opacity;
+  position: relative;
+  z-index: 10;
+}
+
+.page-transition.pt-enter {
+  opacity: 0;
+}
+
+.page-transition.pt-exit {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    transition: none;
+  }
+  .fade-in-1,
+  .fade-in-2,
+  .fade-in-3,
+  .fade-in-4,
+  .fade-in-5,
+  .fade-in-6 {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* Sequential content loading */
+.fade-only-1 {
+  opacity: 0;
+  animation: fadeOnly 0.4s ease-out 0.05s forwards;
+}
+
+.fade-in-1 {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.1s forwards;
+}
+
+.fade-in-2 {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+}
+
+.fade-in-3 {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.3s forwards;
+}
+
+.fade-in-4 {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.4s forwards;
+}
+
+.fade-in-5 {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.5s forwards;
+}
+
+.fade-in-6 {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOnly {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Background is rendered outside transitions in layout */
