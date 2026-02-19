@@ -1,22 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import Navbar from "./components/Navbar";
+import Image from "next/image";
 import Footer from "./components/Footer";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <div className="fade-only-1">
-        <Navbar />
-      </div>
-
       <main>
         {/* Hero */}
         <section
           id="hero"
-          className="flex min-h-screen flex-col items-center justify-center px-4 pt-16 text-center sm:px-6"
+          className="flex min-h-screen flex-col items-center justify-center px-4 text-center sm:px-6"
         >
+          <div className="-mt-24 sm:-mt-32">
           <p className="fade-in-2 font-mono text-sm uppercase tracking-widest text-white/60 sm:text-base">
             Hello, I&apos;m
           </p>
@@ -27,12 +24,12 @@ export default function Home() {
             Electrical Engineering at University of California, San Diego
           </p>
           <div className="fade-in-5 mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/projects"
+            <a
+              href="#projects"
               className="glass glass-hover rounded-xl px-6 py-3 font-mono font-medium text-white transition-all"
             >
               View work
-            </Link>
+            </a>
             <a
               href="#contact"
               className="glass glass-hover rounded-xl px-6 py-3 font-mono font-medium text-white transition-all"
@@ -40,48 +37,78 @@ export default function Home() {
               Get in touch
             </a>
           </div>
+          </div>
         </section>
 
         {/* About */}
         <section
           id="about"
-          className="fade-in-6 scroll-mt-24 px-4 py-28 sm:px-6 lg:px-8"
+          className="fade-in-6 scroll-mt-navbar px-4 py-28 sm:px-6 lg:px-8"
         >
           <div className="mx-auto max-w-4xl">
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               About
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-white/80 font-sans">
-              I build things for fun. I&apos;m currently interested in embedded systems, AI, and robotics.
+                Hey, I'm Alfred. I'm a student at UCSD studying Electrical Engineering with a focus in Machine Learning. I&apos;m interested in embedded systems, AI, and robotics. I'm always looking for new opportunities to learn and grow. I also enjoy cooking and reading in my free time.
             </p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["React", "TypeScript", "Next.js", "Node.js"].map((tech) => (
-                <span
-                  key={tech}
-                  className="glass glass-hover rounded-lg px-4 py-2 font-mono text-sm text-white/90"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+            <p className="mt-6 text-lg leading-relaxed text-white/80 font-sans">
+                Here's some of my technical skills.
+            </p>
+            {/* Edit skills: add/remove strings in each array, or add a new category with label + items */}
+            {(
+              [
+                { label: "Software", items: ["C/C++", "Python", "MATLAB", "System/Verilog", "Java", "PyTorch", "Linux"] },
+                { label: "Hardware", items: ["Microcontrollers", "FPGA", "PCB Design", "Communication Protocols", "Oscilloscopes", "Multimeters"] },
+                { label: "Tools", items: ["Git", "Platformio", "Xcelium", "EasyEDA", "Multisim", "Fusion"] },
+              ] as const
+            ).map(({ label, items }) => (
+              <div key={label} className="mt-8">
+                <p className="font-mono text-sm font-medium text-white/70 mb-3">{label}</p>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((tech) => (
+                    <span
+                      key={tech}
+                      className="glass glass-hover rounded-lg px-4 py-2 font-mono text-sm text-white/90"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* Experience */}
         <section
           id="experience"
-          className="fade-in-6 scroll-mt-24 px-4 py-28 sm:px-6 lg:px-8"
+          className="fade-in-6 scroll-mt-navbar px-4 py-28 sm:px-6 lg:px-8"
         >
           <div className="mx-auto max-w-4xl">
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Experience
             </h2>
             <p className="mt-4 text-lg text-white/70 font-sans">
-              A quick snapshot of what I’ve worked on recently.
+              Here&apos;s what I've been up to recently.
             </p>
 
             <div className="mt-12 grid gap-8">
               {[
+                {
+                  role: "Math Tutor",
+                  company: "Private Tutoring",
+                  dates: "May 2024 — Present",
+                  start: "2023-06-01",
+                  end: "2026-01-01",
+                },
+                {
+                  role: "Social Media Intern",
+                  company: "Global Life Enrichment Center",
+                  dates: "Jul 2023 – Aug 2023 ",
+                  start: "2023-07-01",
+                  end: "2026-08-01",
+                },
                 {
                   role: "FPGA Intern",
                   company: "ATRXIC Consulting",
@@ -90,7 +117,7 @@ export default function Home() {
                   end: "2024-07-31",
                 },
                 {
-                  role: "Electrical",
+                  role: "Electrical Team Member",
                   company: "Triton Robotics",
                   dates: "Jan 2026 — Present",
                   start: "2026-01-01",
@@ -107,7 +134,7 @@ export default function Home() {
                 .map((item) => (
                 <article
                   key={`${item.company}-${item.role}`}
-                  className="glass glass-hover rounded-2xl p-6 transition-all"
+                  className="glass glass-hover glass-spot-sm rounded-2xl p-6 transition-all"
                 >
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                     <h3 className="font-display text-xl font-semibold text-white">
@@ -124,17 +151,82 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Projects */}
+        <section
+          id="projects"
+          className="fade-in-6 scroll-mt-navbar px-4 py-28 sm:px-6 lg:px-8"
+        >
+          <div className="mx-auto max-w-4xl">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Projects
+            </h2>
+            <p className="mt-4 text-lg text-white/70 font-sans">
+              A selection of recent projects I've worked on for fun.
+            </p>
+
+            {/* Edit projects: add/remove items; thumbnail: path under public/ (e.g. /project-1.jpg) or external URL */}
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+              {[
+                {
+                  title: "Calendar Summarizer Gadget",
+                  description: "An ESP32-based gadget that uses a T5-Small model to summarize calendar events and display it on a screen.",
+                  thumbnail: "/calendar.png",
+                  href: "https://github.com/alfred-du/ML-Calendar",
+                },
+                {
+                  title: "Smart Planter",
+                  description: "An IoT automatic planter monitoring system using ESP32 and Telegram Bot.",
+                  thumbnail: "/planter_cover.jpg",
+                  href: "https://github.com/alfred-du/Smart-Planter",
+                },
+              ].map((project) => (
+                <article
+                  key={project.title}
+                  className="glass glass-hover glass-spot-sm overflow-hidden rounded-2xl transition-all"
+                >
+                  <div className="aspect-[4/3] relative w-full bg-white/5">
+                    <Image
+                      src={project.thumbnail}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      unoptimized
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-xl font-semibold text-white">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 font-sans text-sm text-white/70">
+                      {project.description}
+                    </p>
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        className="mt-3 inline-block font-mono text-sm text-white/80 underline-offset-2 hover:underline"
+                      >
+                        View project →
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Contact */}
         <section
           id="contact"
-          className="fade-in-6 scroll-mt-24 px-4 py-28 sm:px-6 lg:px-8"
+          className="fade-in-6 scroll-mt-navbar px-4 py-28 sm:px-6 lg:px-8"
         >
           <div className="mx-auto max-w-4xl">
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Get in touch
             </h2>
             <p className="mt-4 text-lg text-white/70 font-sans">
-              Have a project in mind or just want to say hi? I&apos;d love to hear from you.
+              Want to chat or to just say hi? I&apos;d love to hear from you.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
