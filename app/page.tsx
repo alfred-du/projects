@@ -58,9 +58,9 @@ export default function Home() {
             {/* Edit skills: add/remove strings in each array, or add a new category with label + items */}
             {(
               [
-                { label: "Software", items: ["C/C++", "Python", "MATLAB", "System/Verilog", "Java", "PyTorch", "Linux"] },
+                { label: "Software", items: ["C/C++", "Python/PyTorch", "MATLAB", "System/Verilog", "OpenCV", "Linux"] },
                 { label: "Hardware", items: ["Microcontrollers", "FPGA", "PCB Design", "Communication Protocols", "Oscilloscopes", "Multimeters"] },
-                { label: "Tools", items: ["Git", "Platformio", "Xcelium", "EasyEDA", "Multisim", "Fusion"] },
+                { label: "Tools", items: ["PSpice", "Fusion 360", "EasyEDA", "Vivado", "Git", "PlatformIO", "Soldering", "3D printing"] },
               ] as const
             ).map(({ label, items }) => (
               <div key={label} className="mt-8">
@@ -168,7 +168,7 @@ export default function Home() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {[
                 {
-                  title: "Calendar Summarizer Gadget",
+                  title: "NLP Calendar Gadget",
                   description: "An ESP32-based gadget that uses a T5-Small model to summarize calendar events and display it on a screen.",
                   thumbnail: "/calendar.png",
                   href: "https://github.com/alfred-du/ML-Calendar",
@@ -179,6 +179,12 @@ export default function Home() {
                   thumbnail: "/planter_cover.jpg",
                   href: "https://github.com/alfred-du/Smart-Planter",
                   thumbnailFit: "contain" as const, // zoom out to show full image
+                },
+                {
+                  title: "24V-5V Standalone Buck Converter",
+                  description: "A custom buck converter PCB for Triton Robotics.",
+                  thumbnail: "/buck.png",
+                  href: "https://github.com/alfred-du/TR-Buck",
                 },
               ].map((project) => (
                 <article
