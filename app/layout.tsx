@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import {
   Space_Grotesk,
   Inter,
-  JetBrains_Mono,
-} from "next/font/google";
+  JetBrains_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import PageTransition from "@/app/components/PageTransition";
 import Image from "next/image";
 import GlassPointer from "@/app/components/GlassPointer";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-display",
@@ -36,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={cn("scroll-smooth", "font-sans", geist.variable)}>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/app/components/Footer";
 
@@ -263,7 +262,7 @@ export default function Home() {
                 href="https://linkedin.com/in/alfreddu2007"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass glass-hover rounded-xl px-6 py-3 font-mono font-medium text-white transition-all flex items-center gap-2"
+                className="glass-btn-linkedin font-mono font-medium text-white flex items-center gap-2"
                 aria-label="LinkedIn"
               >
                 <svg
