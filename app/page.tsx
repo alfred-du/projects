@@ -49,10 +49,10 @@ export default function Home() {
               About
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-white/80 font-sans">
-                Hey, I'm Alfred. I'm a student at UCSD studying Electrical Engineering with a focus in Machine Learning. I&apos;m interested in embedded systems, AI, and robotics. I'm always looking for new opportunities to learn and grow. I also enjoy cooking and reading in my free time.
+                Hey, I'm Alfred. I'm a student at UCSD studying Electrical Engineering with a focus in Machine Learning. I&apos;m interested in PCB design, robotics, and AI. I also enjoy cooking, lifting, and reading in my free time.
             </p>
             <p className="mt-6 text-lg leading-relaxed text-white/80 font-sans">
-                Here's some of my technical skills.
+                Here are some of my technical skills.
             </p>
             {/* Edit skills: add/remove strings in each array, or add a new category with label + items */}
             {(
@@ -125,7 +125,7 @@ export default function Home() {
               ]
                 .slice()
                 .sort((a, b) => {
-                  // Newer entries first; "Present" (null end) always on top if start is newer.
+                  // Most recent entries first.
                   const aStart = new Date(a.start).getTime();
                   const bStart = new Date(b.start).getTime();
                   return bStart - aStart;
@@ -160,12 +160,24 @@ export default function Home() {
               Projects
             </h2>
             <p className="mt-4 text-lg text-white/70 font-sans">
-              A selection of recent projects I've worked on for fun.
+              Here's some of the recent projects I've been working on.
             </p>
 
             {/* Edit projects: add/remove items; thumbnail: path under public/ (e.g. /project-1.jpg) or external URL */}
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {[
+                {
+                  title: "Mega Board",
+                  description: "A custom signal/power breakout board for Triton Robotics.",
+                  thumbnail: "/3Drender.png",
+                  href: "https://github.com/alfred-du/Mega-Board",
+                },
+                {
+                  title: "24V-5V Standalone Buck Converter",
+                  description: "A custom buck converter PCB for Triton Robotics.",
+                  thumbnail: "/buck.png",
+                  href: "https://github.com/alfred-du/TR-Buck",
+                },
                 {
                   title: "NLP Calendar Gadget",
                   description: "An ESP32-based gadget that uses a T5-Small model to summarize calendar events and display it on a screen.",
@@ -178,12 +190,6 @@ export default function Home() {
                   thumbnail: "/planter_cover.jpg",
                   href: "https://github.com/alfred-du/Smart-Planter",
                   thumbnailFit: "contain" as const, // zoom out to show full image
-                },
-                {
-                  title: "24V-5V Standalone Buck Converter",
-                  description: "A custom buck converter PCB for Triton Robotics.",
-                  thumbnail: "/buck.png",
-                  href: "https://github.com/alfred-du/TR-Buck",
                 },
               ].map((project) => (
                 <article
