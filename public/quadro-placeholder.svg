@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#1a1a2e"/>
+  <rect x="1" y="1" width="798" height="598" stroke="#ffffff" stroke-opacity="0.08"/>
+  <path d="M320 280h160v40H320z" fill="#ffffff" fill-opacity="0.12"/>
+  <circle cx="400" cy="240" r="48" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="400" y="380" text-anchor="middle" fill="#ffffff" fill-opacity="0.35" font-family="monospace" font-size="18">Quadro</text>
+</svg>

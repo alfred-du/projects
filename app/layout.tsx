@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("scroll-smooth", "font-sans", geist.variable)}>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} font-mono antialiased`}
       >
         {/* Background is always present (not transitioned) */}
         <div className="fixed inset-0 -z-10 bg-[#0B0F14]" aria-hidden>

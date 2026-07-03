@@ -19,7 +19,7 @@ export default function Home() {
           <h1 className="fade-in-3 font-display mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             Alfred Du
           </h1>
-          <p className="fade-in-4 mt-4 max-w-xl text-lg text-white/80 sm:text-xl font-sans">
+          <p className="fade-in-4 mt-4 max-w-xl text-lg text-white/80 sm:text-xl font-mono">
             Electrical Engineering at University of California, San Diego
           </p>
           <div className="fade-in-5 mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -48,18 +48,18 @@ export default function Home() {
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               About
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-white/80 font-sans">
-                Hey, I'm Alfred. I'm a student at UCSD studying Electrical Engineering with a focus in Machine Learning. I&apos;m interested in PCB design, robotics, and AI. I also enjoy cooking, lifting, and reading in my free time.
+            <p className="mt-6 text-lg leading-relaxed text-white/80 font-mono">
+                Hey, I&apos;m Alfred. I&apos;m a student at UCSD studying Electrical Engineering. I&apos;m interested in PCB design, hardware verification, edge computing, embedded systems, and robotic platforms. I also enjoy cooking, lifting, and reading in my free time.
             </p>
-            <p className="mt-6 text-lg leading-relaxed text-white/80 font-sans">
+            <p className="mt-6 text-lg leading-relaxed text-white/80 font-mono">
                 Here are some of my technical skills.
             </p>
             {/* Edit skills: add/remove strings in each array, or add a new category with label + items */}
             {(
               [
-                { label: "Software", items: ["C/C++", "Python/PyTorch", "MATLAB", "System/Verilog", "OpenCV", "Linux"] },
+                { label: "Software", items: ["C/C++", "Python/PyTorch", "RISC-V Assembly", "System/Verilog", "Linux"] },
                 { label: "Hardware", items: ["Microcontrollers", "FPGA", "PCB Design", "Communication Protocols", "Oscilloscopes", "Multimeters"] },
-                { label: "Tools", items: ["PSpice", "Fusion 360", "EasyEDA", "Vivado", "Git", "PlatformIO", "Soldering", "3D printing"] },
+                { label: "Tools", items: ["PSpice", "Fusion 360", "EasyEDA", "Vivado", "Git", "Modus", "QuestaSim", "Soldering", "3D printing"] },
               ] as const
             ).map(({ label, items }) => (
               <div key={label} className="mt-8">
@@ -88,7 +88,7 @@ export default function Home() {
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Experience
             </h2>
-            <p className="mt-4 text-lg text-white/70 font-sans">
+            <p className="mt-4 text-lg text-white/70 font-mono">
               Here&apos;s what I've been up to recently.
             </p>
 
@@ -98,25 +98,32 @@ export default function Home() {
                   role: "Math Tutor",
                   company: "Private Tutoring",
                   dates: "May 2024 — Present",
-                  start: "2023-06-01",
-                  end: "2026-01-01",
+                  start: "2024-05-01",
+                  end: null as string | null,
                 },
                 {
-                  role: "Social Media Intern",
-                  company: "Global Life Enrichment Center",
-                  dates: "Jul 2023 – Aug 2023 ",
-                  start: "2023-07-01",
-                  end: "2026-08-01",
+                  role: "DFT Intern",
+                  company: "Aril Inc.",
+                  dates: "Jul 2026 — Present",
+                  start: "2026-07-01",
+                  end: null as string | null,
                 },
                 {
-                  role: "FPGA Intern",
-                  company: "ATRXIC Consulting",
-                  dates: "Jun 2024 — Jul 2024",
-                  start: "2024-06-01",
-                  end: "2024-07-31",
+                  role: "Hardware Engineer",
+                  company: "Stealth Startup",
+                  dates: "Jun 2026 — Present",
+                  start: "2026-06-01",
+                  end: null as string | null,
                 },
                 {
-                  role: "Electrical Team Member",
+                  role: "Scan Insertion Intern",
+                  company: "Junexic Consulting",
+                  dates: "Jun 2026 — Present",
+                  start: "2026-06-01",
+                  end: null as string | null,
+                },
+                {
+                  role: "Electrical Lead",
                   company: "Triton Robotics",
                   dates: "Jan 2026 — Present",
                   start: "2026-01-01",
@@ -143,7 +150,7 @@ export default function Home() {
                       {item.dates}
                     </span>
                   </div>
-                  <p className="mt-2 font-sans text-white/70">{item.company}</p>
+                  <p className="mt-2 font-mono text-white/70">{item.company}</p>
                 </article>
               ))}
             </div>
@@ -159,13 +166,19 @@ export default function Home() {
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Projects
             </h2>
-            <p className="mt-4 text-lg text-white/70 font-sans">
+            <p className="mt-4 text-lg text-white/70 font-mono">
               Here's some of the recent projects I've been working on.
             </p>
 
             {/* Edit projects: add/remove items; thumbnail: path under public/ (e.g. /project-1.jpg) or external URL */}
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {[
+                {
+                  title: "Quadro",
+                  description: "An autonomous 8-dof quadruped computer vision robot.",
+                  thumbnail: "/quadro.png",
+                  href: "https://github.com/alfred-du/Quadro-Distro",
+                },
                 {
                   title: "Mega Board",
                   description: "A custom signal/power breakout board for Triton Robotics.",
@@ -210,7 +223,7 @@ export default function Home() {
                     <h3 className="font-display text-xl font-semibold text-white">
                       {project.title}
                     </h3>
-                    <p className="mt-2 font-sans text-sm text-white/70">
+                    <p className="mt-2 font-mono text-sm text-white/70">
                       {project.description}
                     </p>
                     {project.href && (
@@ -237,7 +250,7 @@ export default function Home() {
             <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Get in touch
             </h2>
-            <p className="mt-4 text-lg text-white/70 font-sans">
+            <p className="mt-4 text-lg text-white/70 font-mono">
               Want to chat or to just say hi? I&apos;d love to hear from you.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
